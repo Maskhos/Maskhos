@@ -6,7 +6,12 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*"
+		"laravel/framework": "5.2.*",
+		"tinymce/tinymce": "^4.2",
+		"guzzlehttp/guzzle": "~6.0",
+		"barryvdh/laravel-ide-helper": "^2.1",
+		"doctrine/dbal": "^2.5",
+		"lucadegasperi/oauth2-server-laravel": "5.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
