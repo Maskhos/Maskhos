@@ -1,0 +1,58 @@
+.maskhos-alternar {
+    text-align: left;
+}
+
+.maskhos-alternar:nth-of-type(odd){
+    text-align: right;
+}
+
+.maskhos-margin-top {
+	margin-top: 80px;
+}
+
+.maskhos-top-buffer {
+	margin-top: 20px;
+}
+
+.maskhos-select-foto {
+	opacity: 1.0;
+}
+
+.maskhos-opacity {
+	opacity: 0.5;
+}
+
+.maskhos-footer {
+	background-color: rgba(0, 0, 0, 0.45);
+}
+
+.maskhos-btn-blog {
+	background-color: rgba(249, 148, 19, 0.62);
+}
+
+/*
+body {
+	cursor: url('../cursors/oxy-black/left.png'), default;
+}
+*/
+
+.maskhos-carousel{
+	width: 15% !important;
+	height: 15% !important;
+	background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.maskhos-twitter:hover{
+	background-color: #57AFE7;
+	border-radius: 50px;
+}
+
+.maskhos-facebook:hover{
+	background-color: #3B5998;
+	border-radius: 50px;
+}
+
+.maskhos-github:hover{
+	background-color: #171515;
+	border-radius: 50px;
+}
