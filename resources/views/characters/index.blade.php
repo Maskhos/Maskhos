@@ -33,7 +33,7 @@
 				</div>
 			  </div>
 		@else
-			<div class="col-md-2 maskhos-character" data-character="{{$character->charname}}" style="background-image: url('{{$character->charportrait}}')">
+			<div class="col-md-2 maskhos-character" data-character="{{$character->charname}}" style="background-image: url('data:image/png;base64,{{$character->charportrait}}')">
 				<span class="maskhos-name"><a href="characters/{{$character->id}}">{{$character->charname}}</a></span>
 			</div>
 		@endif

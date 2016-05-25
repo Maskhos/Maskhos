@@ -26,9 +26,15 @@ Route::get('/personajestatic/1', 'characterController@manualshow');
 Route::get('/story', 'historyController@index');
 Route::get('/gameplay', 'mechanicController@index');
 Route::get('/gameplaystatic', 'mechanicController@nobbdd');
+
+Route::get('/detailuser', 'Auth\userController@editUser');
+//Route::post('/detailUser', 'Auth\AuthController@storeEditUser');
+Route::post('/updateuser', 'Auth\userController@updateUser');
+Route::get('/backend/createpost', 'backendController@createpostview');
+Route::get('/backend/editPost/{id}', 'backendController@editpostview');
+Route::get('/blog', 'blogController@index');
 Route::get('/blog', 'blogController@index');
 Route::get('/blog/{id}', 'blogController@show');
 Route::get('/blog/{id}/{comment}', 'blogController@editComment');
 Route::post('/blog/comment', 'blogController@storeComment');
-///post/updateComment
 Route::post('/blog/updateComment', 'blogController@storeEditComment');

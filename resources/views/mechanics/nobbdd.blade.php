@@ -7,44 +7,32 @@
 			</div>
 		</div>
 		
-		<div class="row">
+		<div class="row maskhos-transparency">
 			<div class="col-md-12">
-				<div id="bg-asset"></div>
-				<div id="ninja-slider">
-					<div class="slider-inner">
-						<ul>
-							<li>
-								<div class="content">
-									<img src="3/meter.png" />
-									<h3>Unrestricted Content</h3>
-									<p>The content can be anything: HTML, text, images, ...</p>
-								</div>
-							</li>
-							<li>
-								<div class="content">
-									<img src="3/bulb.png" />
-									<h3>Showcase the important</h3>
-									<p>
-										Organize, highlight and showcase your most important content in a sleek and stylish manner.
-									</p>
-								</div>
-							</li>
-							<li>
-								<div class="content">
-									<img src="3/responsive.png" />
-									<h3>Responsive</h3>
-									<p>The Content Slider is responsive. The image in this slide is always 30% of the screen size.</p>
-								</div>
-							</li>
-							<li>
-								<div class="content">
-									<img src="3/browser-support.png" />
-									<h3>Mobile Friendly</h3>
-									<p>The Carousel is compatible with mobile platforms like iphone/ipad.</p>
-								</div>
-							</li>
-						</ul>
-						<div class="fs-icon" title="Expand/Close"></div>
+				<ul class="nav nav-tabs maskhos-top-buffer maskhos-pill">
+				  <li class="active"><a href="#magias" data-toggle="tab" aria-expanded="false">Magias Fusión</a></li>
+				  <li class=""><a href="#craft" data-toggle="tab" aria-expanded="false">Crafteo</a></li>
+				</ul>
+				<div class="row">
+					<div id="mechanics" class="tab-content maskhos-show maskhos-top-buffer">
+					  <div class="tab-pane fade active in row" id="magias">
+						<div class="col-md-6">
+							<h2>Magias fusión</h2>
+							<p>
+								Las magias fusión no son más que matar y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar  y matar y matar 
+							</p>
+						</div>
+						<div class="col-md-6 maskhos-horizontal-padding">
+							<img class="img-responsive" src="../public/img/temp/controls.png" />
+						</div>
+						<div class="col-md-12 text-center maskhos-horizontal-padding">
+							<h2>Vídeo explicativo</h2>
+							Para explicarlo mejor, podéis echar un vistazo a este vídeo:
+							<div class="embed-responsive embed-responsive-16by9 maskhos-top-buffer">
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/btj6nryIf3o" frameborder="0" allowfullscreen></iframe>
+							</div>
+						</div>
+					  </div>
 					</div>
 				</div>
 			</div>

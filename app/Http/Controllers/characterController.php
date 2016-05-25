@@ -34,14 +34,19 @@ class characterController extends Controller
     	try {
 			$content = file_get_contents($url.'/character/'.$id);
 			$character = json_decode($content);
+			$content = file_get_contents($url.'/character');
+			$all = json_decode($content);
 			
 			$content = file_get_contents($url.'/faction/'.$character->data[0]->faction_id);
 			$faction = json_decode($content);
 			
-			if ($character->status=="ok"){
+			
+			
+			if ($character->status=="ok" && $faction->status=="ok"){
 				$data = [
 					'character' => $character->data,
 					'faction' => $faction->data,			
+					 'all' => $all->data,			
 				];
 				return view('characters.show')->with('data', $data);
 			}
