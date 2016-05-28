@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default maskhos-form">
-				<form enctype="multipart/form-data" class="form-horizontal maskhos-form" role="form" method="POST" action="{{ url('/blog/create') }}">
+				<form enctype="multipart/form-data" class="form-horizontal maskhos-form" role="form" method="POST" action="{{ url('/backend/createpost') }}">
 					<legend class="text-center"><span class="number">1</span>Nuevo Post</legend>
 					<fieldset>
 						{!! csrf_field() !!}
@@ -49,7 +49,7 @@
 								@endif
 							</div>
 						</div>
-						
+
 						<div class="form-group{{ $errors->has('posshortdesc') ? ' has-error' : '' }}">
 							<label class="col-md-4 control-label">Descripcion corta</label>
 
@@ -98,9 +98,8 @@
 								</button>
 							</div>
 						</div>
-						<input type="hidden" name="user_id" value="{{Auth::user()->id}}"/>
 					</fieldset>
-					
+
 				</form>
             </div>
         </div>

@@ -6,32 +6,39 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use GuzzleHttp\Client;
 class mechanicController extends Controller
 {
-    public function index(){
+  public function index(){
+    $url = env('API_URL', true);
+    try {
+      $error = false;
+      $view = null;
+      $client = new Client(['base_uri' => $url,
+      'exceptions'=>false
+    ]);
+    // Send a request to https://foo.com/api/test
+    $response1 = $client->request('GET', 'mechanic');
 
-    	$url = env('API_URL', true);
-		
-		try{
-			$content = file_get_contents($url.'/mechanic');
-			$mechanics = json_decode($content);
-			
-			if($mechanics->status == 'ok') {
-				$data = [
-					'mechanics' => $mechanics->data,
-				];
-			}else {
-				return view('errors.503');
-			}
-		return view('mechanics.index')->with('data',$data);
-		}catch(Exception $e){
-			return view('errors.503');
-		}
-		
-		
+    $code1 = $response1->getStatusCode(); // 200
+    // Implicitly cast the body to a string and echo it
+    if($code1 ==200){
+      $mechanics = json_decode($response1->getBody());
+
+      $data = [
+        'mechanics' => $mechanics->data,
+      ];
+    }else {
+      $view =  view('errors.404');
     }
-	
-	public function nobbdd() {
-		return view('mechanics.nobbdd');
-	}
+    $view =  view('mechanics.index')->with('data',$data);
+  }catch(Exception $e){
+    $view = view('errors.503');
+  }
+  return $view ;
+}
+
+public function nobbdd() {
+  return view('mechanics.nobbdd');
+}
 }

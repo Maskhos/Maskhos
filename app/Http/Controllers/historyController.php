@@ -4,33 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+use GuzzleHttp\Client;
 use App\Http\Requests;
 
 class historyController extends Controller
 {
-    public function index(){
+  public function index(){
 
-    	$url = env('API_URL', true);
-		
-		try{
-			$content = file_get_contents($url.'/history');
-			$history = json_decode($content);
-			$content = file_get_contents($url.'/faction');
-			$factions = json_decode($content);
-			
-			if($history->status == 'ok' && $factions->status == 'ok') {
-				$data = [
-					'history' => $history->data,
-					'factions' => $factions->data,
-				];
-			}else {
-				return view('errors.503');
-			}
-		return view('historys.index')->with('data',$data);
-		}catch(Exception $e){
-			return view('errors.503');
-		}
-		
-		
+    $url = env('API_URL', true);
+    try {
+      $error = false;
+      $view = null;
+      $client = new Client(['base_uri' => $url,
+      'exceptions'=>false
+    ]);
+    // Send a request to https://foo.com/api/test
+    $response1 = $client->request('GET', 'history');
+
+    $code1 = $response1->getStatusCode(); // 200
+    $response2 = $client->request('GET', 'faction');
+
+    $code2 = $response1->getStatusCode(); // 200
+
+    // Implicitly cast the body to a string and echo it
+    if($code1 ==200  && $code2 == 200){
+
+
+      $history = json_decode($response1->getBody());
+      $factions = json_decode($response2->getBody());
+
+      $data = [
+        'history' => $history->data,
+        'factions' => $factions->data,
+      ];
+    }else {
+      return view('errors.503');
     }
+    $view =  view('historys.index')->with('data',$data);
+  }catch(Exception $e){
+    $view =  view('errors.503');
+  }
+  return $view;
+
+
+}
 }

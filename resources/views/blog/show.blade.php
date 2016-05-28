@@ -32,7 +32,8 @@
       </div>
     </div>
 
-
+    <!-- EMPIEZA FORM-->
+    @if(Auth::user() !=null)
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default maskhos-form">
@@ -68,7 +69,9 @@
 
         </div>
       </div>
-    </div>
+    </div><!--ACABA CREAR COMENTARIO -->
+    @endif
+    <h1>Comentarios</h1>
     @foreach ($data['comments'] as $comments)
     <div class="row">
       <div class="col-md-8 col-md-offset-2 jumbotron img-rounded">
@@ -78,7 +81,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="col-md-10">
-              <h2>{{ $users->usname }}</h2>
+              <a href="{{url('showuser/'.$users->id.'')}}"> <h2>{{ $users->usname }}</h2></a>
 
             </div>
             <div class="col-md-1">

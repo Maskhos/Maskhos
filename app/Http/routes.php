@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
 Route::auth();
@@ -26,12 +26,18 @@ Route::get('/personajestatic/1', 'characterController@manualshow');
 Route::get('/story', 'historyController@index');
 Route::get('/gameplay', 'mechanicController@index');
 Route::get('/gameplaystatic', 'mechanicController@nobbdd');
-
+Route::get('showuser/{id}','Auth\userController@show' );
 Route::get('/detailuser', 'Auth\userController@editUser');
 //Route::post('/detailUser', 'Auth\AuthController@storeEditUser');
 Route::post('/updateuser', 'Auth\userController@updateUser');
 Route::get('/backend/createpost', 'backendController@createpostview');
+Route::get('/backend', 'backendController@index');
+Route::post('/backend/createpost', 'backendController@createPost');
 Route::get('/backend/editPost/{id}', 'backendController@editpostview');
+Route::get('backend/deletepost/{id}', 'backendController@deletepost');
+
+//backend/delete/
+Route::post('/backend/editpost', 'backendController@editPost');
 Route::get('/blog', 'blogController@index');
 Route::get('/blog', 'blogController@index');
 Route::get('/blog/{id}', 'blogController@show');
