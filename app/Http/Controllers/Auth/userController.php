@@ -115,7 +115,20 @@ if($error){
 return $view;
 
 }
-
+/**
+* Get a validator for an incoming registration request.
+*
+* @param  array  $data
+* @return \Illuminate\Contracts\Validation\Validator
+*/
+protected function validator(array $data)
+{
+  return Validator::make($data, [
+    'usname' => 'required|max:255',
+    'usbirthDate' => 'required',
+    'email' => 'required|email|max:255|unique:users'
+  ]);
+}
 
 protected function updateUser(Request $request)
 {

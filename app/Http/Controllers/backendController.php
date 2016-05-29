@@ -289,6 +289,7 @@ protected function createPost(Request $request)
           ]
         ]);
 
+
         $code = $response->getStatusCode(); // 200
         $reason = $response->getReasonPhrase(); // OK
         // echo $code;
@@ -344,6 +345,22 @@ protected function createPost(Request $request)
       }
     }
 
+            /**
+            * Get a validator for an incoming registration request.
+            *
+            * @param  array  $data
+            * @return \Illuminate\Contracts\Validation\Validator
+            */
+            protected function validator(array $data)
+            {
+              return Validator::make($data, [
+                'postitle' => 'required|max:255',
+                'poscontent' => 'required|max:255',
+                'posshortdesc' => 'required|max:255',
+                'category_id' => 'required|max:255',
+                'user_id' => 'required|max:255',
+              ]);
+            }
 
 
   }
