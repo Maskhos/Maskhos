@@ -1,12 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 maskhos-section-title maskhos-section-section">
+			Login
+		</div>
+	</div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default maskhos-form">
 				<form class="form-horizontal maskhos-form" role="form" method="POST" action="{{ url('/login') }}">
-					<legend class="text-center"><span class="number"></span>Login</legend>
+					<legend class="text-center"><span class="number"></span>Adelante</legend>
 					<fieldset>
 					{!! csrf_field() !!}
 

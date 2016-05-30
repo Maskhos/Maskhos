@@ -65,15 +65,16 @@ class backendController extends Controller
       $view =view('errors.404');
     }
   }catch(\Illuminate\Auth\Access\AuthorizationException $e){
+    //echo $e;
     $view =view('errors.100');
   }catch(\Exception $e){
-    echo $e;
+    //echo $e;
     $view =view('errors.503');
   }
   return $view;
 
 }
-protected function deletepost( $id){
+protected function deletepost($id){
 
   try{
     $error = false;
@@ -87,16 +88,19 @@ protected function deletepost( $id){
     $borrar =  $url .'post/'.$id;
     $response = $client->request('DELETE', $borrar);
     $code = $response->getStatusCode();
+    echo $code;
     if($code == 204){
       $view =  redirect('/backend');
     }
   }catch(\Illuminate\Auth\Access\AuthorizationException $e){
+    echo $e;
     $view = view ('errors.100');
   }catch(\Exception $e){
     echo $e;
     $view = view('errors.503');
   }
   return $view;
+
 }
 public function editpostview(Request $request,$id){
 
@@ -244,10 +248,11 @@ protected function createPost(Request $request)
   }
   protected function editPost(Request $request)
   {
+    $view = null;
     $img = null;
     $this->authorize('isLogged', Auth::user());
     $data = $request->all();
-    $url = env('API_URL', true).'/post/'.$request->session()->get("editingpost"). "/PATCH";
+    $url = env('API_URL', true).'post/'.$request->session()->get("editingpost"). "/PATCH";
     $client = new Client([
       'base_uri' => $url,
       // You can set any number of default request options.
@@ -292,16 +297,16 @@ protected function createPost(Request $request)
 
         $code = $response->getStatusCode(); // 200
         $reason = $response->getReasonPhrase(); // OK
-        // echo $code;
+        echo $code;
         // Implicitly cast the body to a string and echo it
         // var_dump($contenido);
         if($code==200)
         {
           // Implicitly cast the body to a string and echo it
           $contenido = json_decode($response->getBody())->data;
-          return redirect('/');
+          $view = redirect('/backend');
         }else{
-          return view("errors.index");
+          $view =  view("errors.index");
         }
       }else{
         $response = $client->request('POST', $url,[
@@ -338,29 +343,30 @@ protected function createPost(Request $request)
         {
           // Implicitly cast the body to a string and echo it
           $contenido = json_decode($response->getBody())->data;
-          return redirect('/');
+          $view =  redirect('/backend');
         }else{
-          return view("errors.index");
+          $view =  view("errors.index");
         }
       }
+      return $view;
     }
 
-            /**
-            * Get a validator for an incoming registration request.
-            *
-            * @param  array  $data
-            * @return \Illuminate\Contracts\Validation\Validator
-            */
-            protected function validator(array $data)
-            {
-              return Validator::make($data, [
-                'postitle' => 'required|max:255',
-                'poscontent' => 'required|max:255',
-                'posshortdesc' => 'required|max:255',
-                'category_id' => 'required|max:255',
-                'user_id' => 'required|max:255',
-              ]);
-            }
+    /**
+    * Get a validator for an incoming registration request.
+    *
+    * @param  array  $data
+    * @return \Illuminate\Contracts\Validation\Validator
+    */
+    protected function validator(array $data)
+    {
+      return Validator::make($data, [
+        'postitle' => 'required|max:255',
+        'poscontent' => 'required|max:255',
+        'posshortdesc' => 'required|max:255',
+        'category_id' => 'required|max:255',
+        'user_id' => 'required|max:255',
+      ]);
+    }
 
 
   }

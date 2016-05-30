@@ -1,12 +1,13 @@
 @extends('layouts.app')
 @section('content')
-	<div class="container">
-		<div class="row" id="go">
-			<div class="col-md-12">
-				<h1 class="maskhos-section-title maskhos-section-section">Mecánicas de juego</h1>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 maskhos-section-title maskhos-section-section">
+				Mecánicas de juego
 			</div>
 		</div>
-		
+	</div>
+	<div class="container">		
 		<div class="row maskhos-transparency">
 			<div class="col-md-12">
 				<ul class="nav nav-tabs maskhos-top-buffer maskhos-pill">

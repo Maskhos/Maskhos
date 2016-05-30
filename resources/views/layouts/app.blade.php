@@ -17,6 +17,7 @@
   <!-- Custom Fonts -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
   <!-- jQuery -->
@@ -31,7 +32,8 @@
 
   <style>
   body {
-    font-family: 'Lato';
+    font-family: 'Roboto', sans-serif;
+	font-size: 18px;
   }
 
   .fa-btn {
@@ -80,7 +82,7 @@
           <!-- Authentication Links -->
           @if (Auth::guest())
           <li><a href="{{ url('/login') }}">Login</a></li>
-          <li><a href="{{ url('/register') }}">Register</a></li>
+          <li><a href="{{ url('/register') }}">Registrarse</a></li>
           @else
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -88,8 +90,9 @@
             </a>
 
             <ul class="dropdown-menu" role="menu">
-              <li><a href="{{ url('/detailuser') }}"><i class="fa fa-pencil fa-sign-out"></i>Detail User</a></li>
-              <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+              <li><a href="{{ url('/showuser/'.Auth::user()->id) }}"><i class="maskhos-btn-menu fa fa-pencil fa-sign-out"></i><span class="maskhos-btn-menu">Ver perfil</span></a></li>
+              <li><a href="{{ url('/detailuser') }}"><i class="maskhos-btn-menu fa fa-pencil fa-sign-out"></i><span class="maskhos-btn-menu">Editar perfil</span></a></li>
+              <li><a href="{{ url('/logout') }}"><i class="maskhos-btn-menu fa fa-btn fa-sign-out"></i><span class="maskhos-btn-menu">Salir</span></a></li>
             </ul>
 
 
@@ -105,7 +108,7 @@
 
   <footer>
     <div class="container maskhos-top-buffer">
-      <div class="row maskhos-footer">
+      <div class="row">
         <div class="col-lg-3 col-md-2 col-xs-12 maskhos-mini-buffer">
           <ul class="list-inline text-left">
             <li>

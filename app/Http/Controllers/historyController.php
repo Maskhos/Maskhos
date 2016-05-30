@@ -39,13 +39,14 @@ class historyController extends Controller
         'factions' => $factions->data,
       ];
     }else {
-      return view('errors.503');
+      $view =  view('errors.503');
     }
     $view =  view('historys.index')->with('data',$data);
   }catch(Exception $e){
-    $view =  view('errors.503');
+    // $view =  view('errors.503');
+	echo $e;
   }
-  return $view;
+   return $view;
 
 
 }

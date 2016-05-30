@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-	<div class="row" id="go">
-		<div class="col-md-12">
-			<h1 class="maskhos-section-title maskhos-section-section">Personajes</h1>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 maskhos-section-title maskhos-section-character">
+			Personajes
 		</div>
 	</div>
+</div>
+<div class="container">
 	<div class="row">
 	@foreach ($data['character'] as $character)
 		@if ($character->spoiler)
@@ -33,7 +35,7 @@
 				</div>
 			  </div>
 		@else
-			<div class="col-md-2 maskhos-character" data-character="{{$character->charname}}" style="background-image: url('data:image/png;base64,{{$character->charportrait}}')">
+			<div class="col-md-2 maskhos-character" data-character="{{$character->charname}}" style="background-image: url('data:image/png;base64,{{$character->charportrait}}');">
 				<span class="maskhos-name"><a href="characters/{{$character->id}}">{{$character->charname}}</a></span>
 			</div>
 		@endif

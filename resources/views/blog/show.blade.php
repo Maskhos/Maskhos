@@ -2,35 +2,18 @@
 @section('content')
 <!--Contenido de post-->
 
-<!-- Crear Comentario -->
-<div class="background">
-  <div class="container">
-    <div class="row" id="go">
-      <div class="col-md-12">
-        <h1 class="maskhos-section-title maskhos-section-section">POST</h1>
-      </div>
-    </div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 maskhos-section-title maskhos-section-character">
+			Ver Post
+		</div>
+	</div>
+<div class="container">
+	<div class="row maskhos-transparency">
+		<div class="maskhos-entry-image col-md-12" style="background-image:url('data:image/png;base64,{{$data['post']->posphoto}}');">
 
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2 jumbotron maskhos-alternar">
-        <div class="row">
-          <div class="col-md-12">
-            <h1>{{ $data['post']->postitle }}</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-
-            <img src="data:image/jpeg;base64,{{$data['post']->posphoto}}" />
-
-          </div>
-        </div><div class="row">
-          <div class="col-md-12">
-            {{ $data['post']->poscontent }}
-          </div>
-        </div>
-      </div>
-    </div>
+		</div>
+	</div>
 
     <!-- EMPIEZA FORM-->
     @if(Auth::user() !=null)
@@ -72,23 +55,22 @@
     </div><!--ACABA CREAR COMENTARIO -->
     @endif
     <h1>Comentarios</h1>
-    @foreach ($data['comments'] as $comments)
+    @foreach ($data['post']->comments as $comments)
     <div class="row">
       <div class="col-md-8 col-md-offset-2 jumbotron img-rounded">
 
-        @foreach ($data['users'] as $users)
-        @if ($users->id == $comments->user_id)
+
         <div class="row">
           <div class="col-md-12">
             <div class="col-md-10">
-              <a href="{{url('showuser/'.$users->id.'')}}"> <h2>{{ $users->usname }}</h2></a>
+              <a href="{{url('showuser/'.$data['post']->users->id.'')}}"> <h2>{{ $data['post']->users->usname }}</h2></a>
 
             </div>
             <div class="col-md-1">
-              <img width="50px" height="50px" class="img-rounded" src="data:image/jpeg;base64,{{ $users->uspicture }}" />
+              <img width="50px" height="50px" class="img-rounded" src="data:image/jpeg;base64,{{ $data['post']->users->uspicture }}" />
 
             </div>
-            @if($users->id == Auth::id())
+            @if($data['post']->users->id == Auth::id())
             <div class="col-md-1">
               <a class="btn-xs btn-danger fa fa-pencil"  href="{{ url('/blog/'. $data['id'] . '/' . $comments->id) }}" ></a>
             </div>
@@ -96,12 +78,6 @@
           </div>
 
         </div>
-
-        @endif
-
-
-
-        @endforeach
         <div class="row">
           <div class="col-md-12">
             <div class="col-md-6">
@@ -113,8 +89,4 @@
     </div>
   </div>
   @endforeach
-</div>
-</div>
-
-
 @endsection

@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use GuzzleHttp\Client;
-use Auth;
 
 class AuthController extends Controller
 {
@@ -129,36 +128,40 @@ class AuthController extends Controller
         return $user ;
       }
     }
+
     public function getRegister()
     {
-      $url = env('API_URL', true);
-      $view = null;
-      $response1= null;
-      $response2=null;
-      $client = new Client(['base_uri' => $url,
-      'exceptions'=>false
-    ]);
-    // Send a request to https://foo.com/api/test
-    $response1 = $client->request('GET', 'faction');
-    $response2 =  $client->request('GET', 'country');
-    $code1 = $response1->getStatusCode(); // 200
-    $code2 = $response2->getStatusCode(); // 200
-    // Implicitly cast the body to a string and echo it
-    if($code1 ==200 && $code2 ==200 ){
-      $factions = json_decode($response1->getBody());
-      $countrys = json_decode($response2->getBody());
-      $data = [
-        'factions' => $factions->data,
-        'countrys' => $countrys->data,
-      ];
-      $view =  view('auth.register')->with('data',$data);
-    } else {
-      //echo $code1;
-      $view =  view ('errors.503');
+      try{
+
+        $error = false;
+        $url = env('API_URL', true);
+        $view = null;
+        $response1= null;
+        $response2=null;
+        $client = new Client(['base_uri' => $url,
+        'exceptions'=>false
+      ]);
+      // Send a request to https://foo.com/api/test
+      $response1 = $client->request('GET', 'faction');
+      $response2 =  $client->request('GET', 'country');
+      $code1 = $response1->getStatusCode(); // 200
+      $code2 = $response2->getStatusCode(); // 200
+
+      if ($code1 ==  200 &&  $code2 ==200) {
+        $factions = json_decode($response1->getBody());
+        $countrys = json_decode($response2->getBody());
+        $data = [
+          'factions' => $factions->data,
+          'countrys' => $countrys->data,
+        ];
+        return view('auth.register')->with('data',$data);
+      } else {
+        return view ('errors.503');
+      }
+    } catch(Exception $e) {
+      return view ('errors.503');
     }
-    return $view;
+
 
   }
-
-
 }

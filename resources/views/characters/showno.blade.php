@@ -21,15 +21,13 @@
 
 @section('content')
 	<!-- nombre personaje -->
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="col-md-12 maskhos-section-title maskhos-section-character">
-						illo
-					</h1>
-				</div>
-			</div>
+		<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 maskhos-section-title maskhos-section-character">
+			illo
 		</div>
+	</div>
+</div>
 		<div class="container-fluid maskhos-transparency">
 			<div class="row" id="character_info">
 				<!-- foto lateral izq -->

@@ -42,6 +42,32 @@ class blogController extends Controller
   return $view;
 
 }
+protected function bycategory(Request $request, $id){
+  try{
+    $view = null;
+    $url = env('API_URL', true);
+    $error = false;
+    $client = new Client(['base_uri' => $url,
+    'exceptions'=>false
+  ]);
+  // Send a request to https://foo.com/api/test
+  $response1 = $client->request('GET', 'post/category/'.$id);
+  $code1 = $response1->getStatusCode(); // 200
+
+  if($code1==200){
+    $posts = json_decode($response1->getBody());
+    $data = [
+      'post' => $posts->data,
+    ];
+  }else {
+    return view('errors.503');
+  }
+  return view('blog.index')->with('data',$data);
+}catch(Exception $e){
+  return view('errors.503');
+}
+
+}
 protected function storeComment(Request $request){
   $view = null;
   try{
@@ -96,7 +122,7 @@ protected function storeEditComment(Request $request){
   $view = null;
   try{
     $this->authorize('isLogged', Auth::user());
-    $url = env('API_URL', true) . "/comment/" . $request->session()->get("commentEdit");
+    $url = env('API_URL', true) . "comment/" . $request->session()->get("commentEdit");
     $client = new Client([
       'base_uri' => $url,
       // You can set any number of default request options.
@@ -113,8 +139,8 @@ protected function storeEditComment(Request $request){
         $view = view('errors.404');
       }
     }catch(\Exception $e){
-
-      $view = view('errors.503');
+      echo $e;
+    //  $view = view('errors.503');
     }
     return $view;
   }
@@ -183,8 +209,6 @@ protected function show(Request $request , $id){
         $data = [
           'id' => $id,
           'post' => $post->data[0],
-          'comments' => $comments->data,
-          'users' => $users->data
         ];
       }else {
         $view =  view('errors.503');
@@ -202,7 +226,7 @@ protected function show(Request $request , $id){
     $view =  view('errors.404');
   }
 }catch(\Exception $e){
-  //echo $e;
+  // echo $e;
   $view =  view('errors.503');
 }
 return $view;

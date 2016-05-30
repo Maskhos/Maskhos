@@ -56,21 +56,13 @@ public function show($id) {
   if($code1 ==200 && $code2 == 200 ){
     $character = json_decode($response1->getBody());
     $all = json_decode($response2->getBody());
-    $response3 = $client->request('GET', 'faction/'.$character->data[0]->faction_id);
-    $code3 = $response3->getStatusCode(); // 200
-    if($code3 ==200){
+    $data = [
+      'character' => $character->data,
+      'all' => $all->data,
+    ];
+    $view =  view('characters.show')->with('data', $data);
 
-      $faction = json_decode($response3->getBody());
-      $data = [
-        'character' => $character->data,
-        'faction' => $faction->data,
-        'all' => $all->data,
-      ];
-      $view =  view('characters.show')->with('data', $data);
 
-    }else {
-      $view =  view("errors.404");
-    }
   }else{
     $view =  view("errors.404");
   }

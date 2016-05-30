@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="background">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 maskhos-section-title maskhos-section-section">
+			Registro
+		</div>
+	</div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
